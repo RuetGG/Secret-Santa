@@ -24,3 +24,24 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+@keyframes fall {
+  0% { transform: translateY(0); opacity: 1; }
+  100% { transform: translateY(200px); opacity: 0; }
+}
+.animate-fall {
+  animation: fall linear infinite 5s;
+}
+
+.font-christmas {
+  letter-spacing: 0.05em;
+}
+.snowflake {
+  position: absolute;
+  top: -10px;
+  font-size: 1rem;
+  animation: fall linear infinite;
+  color: #fff;
+  user-select: none;
+  pointer-events: none;
+}
