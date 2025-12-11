@@ -64,18 +64,7 @@ export default function Home() {
           </span>
         </div>
       )}
-      {/* Reshuffle button */}
-      <button
-        className="mt-6 bg-yellow-400 py-3 px-6 rounded hover:bg-yellow-300 shadow-md relative z-10 text-xl font-bold"
-        onClick={async () => {
-          const res = await fetch("/api/reshuffle", { method: "POST" });
-          const data = await res.json();
-          if (data.success) alert("Pairs reshuffled!");
-          else alert("Something went wrong");
-        }}
-      >
-        Reshuffle 🎁
-      </button>
+
 
       {/* Icy snow at the bottom */}
       <div className="absolute bottom-0 left-0 w-full h-32 overflow-hidden">
