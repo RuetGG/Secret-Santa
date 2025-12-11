@@ -2,7 +2,6 @@
 import { useState } from "react";
 import Snowflake from "./components/Snowflake";
 
-
 export default function Home() {
   const [name, setName] = useState("");
   const [target, setTarget] = useState<string | null>(null);
@@ -34,25 +33,24 @@ export default function Home() {
 
       {/* Page title */}
       <h1 className="text-6xl font-bold text-red-600 mb-8 drop-shadow-lg relative z-10 mt-20">
-  🎄 Secret Santa 🎁
-</h1>
+        🎄 Secret Santa 🎁
+      </h1>
 
-<form
-  onSubmit={handleSubmit}
-  className="flex flex-col gap-6 w-72 relative z-10"
->
-  <input
-    type="text"
-    placeholder="Enter your name"
-    value={name}
-    onChange={(e) => setName(e.target.value)}
-    className="px-6 py-4 rounded-lg border-2 border-red-500 focus:outline-none focus:ring-2 focus:ring-red-300 text-center text-red-700 text-2xl shadow-md"
-  />
-  <button className="bg-red-600 text-white py-3 rounded-lg font-bold hover:scale-105 transform transition-all duration-200 shadow-md text-2xl">
-    Reveal My Person
-  </button>
-</form>
-
+      <form
+        onSubmit={handleSubmit}
+        className="flex flex-col gap-6 w-72 relative z-10"
+      >
+        <input
+          type="text"
+          placeholder="Enter your name"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          className="px-6 py-4 rounded-lg border-2 border-red-500 focus:outline-none focus:ring-2 focus:ring-red-300 text-center text-red-700 text-2xl shadow-md"
+        />
+        <button className="bg-red-600 text-white py-3 rounded-lg font-bold hover:scale-105 transform transition-all duration-200 shadow-md text-2xl">
+          Reveal My Person
+        </button>
+      </form>
 
       {/* Error message */}
       {error && <p className="text-red-700 mt-4 z-10 relative">{error}</p>}
@@ -66,6 +64,18 @@ export default function Home() {
           </span>
         </div>
       )}
+      {/* Reshuffle button */}
+      <button
+        className="mt-6 bg-yellow-400 py-3 px-6 rounded hover:bg-yellow-300 shadow-md relative z-10 text-xl font-bold"
+        onClick={async () => {
+          const res = await fetch("/api/reshuffle", { method: "POST" });
+          const data = await res.json();
+          if (data.success) alert("Pairs reshuffled!");
+          else alert("Something went wrong");
+        }}
+      >
+        Reshuffle 🎁
+      </button>
 
       {/* Icy snow at the bottom */}
       <div className="absolute bottom-0 left-0 w-full h-32 overflow-hidden">
